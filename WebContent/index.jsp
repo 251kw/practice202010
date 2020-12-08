@@ -5,8 +5,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-
-<title>Shouter - ログイン -</title>
+<title>- ログイン -</title>
 <link rel="stylesheet" href="./css/skyblue.css">
 <link rel="stylesheet" href="./css/pe-icon-7-stroke.css">
 <link rel="stylesheet" href="./css/helper.css">
@@ -15,8 +14,9 @@
 	<div class="bg-success padding-y-5">
 		<div class="container padding-y-5 text-center">
 			<h1>
-				Shouter&nbsp;<span class="icon-speaker"></span>
+				ログイン
 			</h1>
+
 		</div>
 	</div>
 	<div class="padding-y-5 text-center">
@@ -56,6 +56,10 @@
 					</c:if>
 				</table>
 			</form>
+			<form action="./UserInfoInput.jsp" method="post">
+				<input class="btn" type="submit" value="新規登録">
+			</form>
+			<hr>
 		</div>
 	</div>
 </body>
