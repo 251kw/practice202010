@@ -2,14 +2,13 @@ package controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DBManager;
 import dto.UserDTO;
 
 @WebServlet("/UserInfoInput")
@@ -26,22 +25,17 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	String icon = request.getParameter("icon");
 	String profile = request.getParameter("profile");
 
-	RequestDispatcher dispatcher = null;
+	UserDTO user = new UserDTO();
+	user.setLoginId(loginId);
+	user.setPassword(password);
+	user.setUserName(username);
+	user.setPassword(icon);
+	user.setUserName(profile);
 
-	if (loginId.equals("") || password.equals("")) {	//
-		// UserInfoConfirm.jsp に処理を転送
-		dispatcher = request.getRequestDispatcher("UserInfoInput.jsp");
-		dispatcher.forward(request, response);
-	} else {
-		// ログイン認証を行い、ユーザ情報を取得
-		DBManager dbm = new DBManager();
-		UserDTO user = dbm.getRegistUser(loginId, password, username, icon, profile); //
+	request.setAttribute("user",user);
 
-		request.setAttribute("user", user);
-		dispatcher = request.getRequestDispatcher("UserInfoConfirm.jsp");
-
-		// 処理を転送
-			dispatcher.forward(request, response);
-		}
+	ServletContext sc = getServletContext();
+	sc.getRequestDispatcher("/UserInfoConfirm.jsp")
+	.forward(request, response);
 	}
 }
