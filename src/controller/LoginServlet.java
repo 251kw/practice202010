@@ -24,6 +24,9 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
+
+		request.setCharacterEncoding("UTF-8");	//文字コード変換
+		response.setContentType("text/html;charset=UTF-8");
 	}
 
 	// index.jsp の「ログイン」ボタンから呼び出される
@@ -31,7 +34,6 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
-
 		RequestDispatcher dispatcher = null;
 		String message = null;
 
